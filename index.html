@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <nav class="navbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link active" href="#" onclick="toggleAbout()">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="tel:+819063570546">Phone Call</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://wa.me/819063570546?text=Hello%20there!">WhatsApp</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="mailto:blowsakib@gmail.com">Email</a>
+      </li>
+    </ul>
+  </nav>
+<head>
+  <title>Billionrrie Shoes</title>
+  <style>
+    a:visited {
+  color: blue; /* Change the color of visited links to blue */
+}
+    body {
+      background-color: #FFDAB9;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    .about-content {
+      display: none;
+      padding: 20px;
+      border: 1px solid #ccc;
+      margin-top: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .product-images img {
+      width: 250px;
+      height: auto;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+    .enlarged-image {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+    }
+    .buy-now-button {
+      background-color: indigo;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+     vertical-align: middle;
+      cursor: pointer;
+}
+    .enlarged-image img {
+      max-width: 80%;
+      max-height: 80%;
+    }
+    .product-info {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+ 
+
+  <div class="about-content" id="about">
+    <p>About Billionrrie Shoes</p>
+    <p>At Billionrrie Shoes, our journey began with a vision to redefine the world of footwear. We embarked on a mission to offer more than just shoes; we aimed to provide an experience where style meets comfort and quality.
+
+      Driven by passion and fueled by creativity, we curate a collection of footwear that embodies elegance, functionality, and innovation. Our commitment to excellence extends from the materials we select to the meticulous craftsmanship that defines each pair of shoes.
+      
+      With a foundation built on quality and a keen eye for trends, Billionrrie Shoes strives to be your go-to destination for footwear that effortlessly complements your lifestyle. We believe that a great pair of shoes not only completes an outfit but also elevates confidence and comfort.
+      
+      Beyond offering a wide array of styles, sizes, and brands, we aspire to cultivate a community where fashion enthusiasts, trendsetters, and comfort seekers unite. Our dedication to customer satisfaction drives us to continually enhance our services and deliver a shopping experience that exceeds expectations.
+      
+      Thank you for being a part of the Billionrrie Shoes family. Step into luxury, step into confidence—step into Billionrrie."</p>
+    <!-- Add the rest of your About content here -->
+  </div>
+  <div class="container">
+    <div class="product-images">
+      <img src="https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/9a80a2287d87b832b9ae3bd92e510b1f.jpg?imageView2/2/w/800/q/70/format/webp" alt="Product 1" onclick="showEnlarged(this.src)">
+      <img src="https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/885c22340f422287c6976fc7409235df.jpg?imageView2/2/w/800/q/70/format/webp" alt="Product 2" onclick="showEnlarged(this.src)">
+      <img src="https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/68da5749b7dbf420bcac35c14d229156.jpg?imageView2/2/w/800/q/70/format/webp" alt="Product 3" onclick="showEnlarged(this.src)">
+    </div>
+
+    <div class="product-info">
+      <h1>Fashionable Shoes</h1>
+      <p>Stylish and Fashionable Winter and Summer Exclusive Sneakers Converse Shoes for Men</p>
+      <p>মূল্য:৫০০০ টাকা</p>
+      <button onclick="redirectToOrderPage()" class="buy-now-button">Buy Now</button>
+
+    </div>
+
+    <div class="enlarged-image" onclick="hideEnlarged()">
+      <img src="" alt="Enlarged Image">
+    </div>
+  </div>
+
+  <script>
+    function toggleAbout() {
+      const aboutContent = document.getElementById("about");
+      if (aboutContent.style.display === "none") {
+        aboutContent.style.display = "block";
+      } else {
+        aboutContent.style.display = "none";
+      }
+    }
+
+    function redirectToOrderPage() {
+      window.location.href = 'order.html'; // Redirect to order.html
+    }
+    function showEnlarged(imageSrc) {
+      const enlargedImage = document.querySelector('.enlarged-image img');
+      enlargedImage.src = imageSrc;
+      document.querySelector('.enlarged-image').style.display = 'block';
+      viewContentEvent(); // Trigger ViewContent event on image click
+    }
+
+    function hideEnlarged() {
+      document.querySelector('.enlarged-image').style.display = 'none';
+    }
+
+    // JavaScript functions for events (View Content, Custom Events, Purchase)
+    function viewContentEvent() {
+      // Trigger the 'ViewContent' event when a user views the product
+      fbq('track', 'ViewContent', {
+        content_ids: ['product_1_id'], // Replace with your product ID or SKU
+        content_type: 'product',
+        value: 2000, // Replace with your product price
+        currency: 'BDT'
+      });
+    }
+
+    function customEvent() {
+      // Trigger the custom event when a specific action occurs
+      fbq('trackCustom', 'ShareDiscount', {promotion: 'share_discount_10%'});
+    }
+  </script>
+</body>
+</html>

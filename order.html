@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+ <style>
+    body {
+      background-color: #b88e6a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      color: black;
+    }
+
+    .required-symbol {
+      color: rgb(250, 12, 12);
+    }
+
+    .bg2 {
+      position: relative;
+    }
+
+    /* Style the button */
+    .btn input[type="submit"] {
+      background-color: indigo;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+     vertical-align: middle;
+      cursor: pointer;
+    }
+
+    /* Optional: Hover effect */
+    .btn input[type="submit"]:hover {
+      background-color: green;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table, th, td {
+      border: 1px solid white;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+
+    .error-message {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <style>
+				.required-symbol {
+				  color: rgb(250, 12, 12);
+				}
+			  </style>
+			  
+			  <section class="bg2" id="infomation" style="position:relative;">
+				<h1>অর্ডার ফরম পূরণ করুন</h1>
+				<form action="https://formspree.io/f/mwkdbgqn" method="POST">
+				  <table class="ta1">
+					
+					<tr>
+					  <th>আপনার নাম<span class="required-symbol">※</span></th>
+					  <td><input type="text" name="name" size="30" class="ws" required placeholder="আপনার নাম লিখুন "></td>
+					</tr>
+					<!-- Error message for お名前 -->
+					<tr class="error-message" style="display: none;">
+					  <td></td>
+					  <td class="error-text"></td>
+					</tr>
+					<tr>
+						<th>ফোন নাম্বার <span class="required-symbol">※</span></th>
+						<td><input type="tel" name="tel" size="30" class="ws"  required placeholder="আপনার ফোন নাম্বার লিখুন "></td>
+					  </tr>
+					  <tr>
+						<th>ঠিকানা<span class="required-symbol">※</span></th>
+						<td><textarea name="ঠিকানা" cols="30" rows="5" class="wl" required placeholder="আপনার ঠিকানা লিখুন "></textarea></td>
+					  </tr>
+					  <tr class="error-message" style="display: none;">
+						<td></td>
+						<td class="error-text"></td>
+					  </tr>
+				  </table>
+				  <p class="btn">
+					<input type="submit" value="অর্ডার করুন">
+				  </p>
+				</form>
+			  </section>
+			  <script>
+				function purchaseEvent() {
+				  // Trigger the 'Purchase' event when a user makes a purchase
+				  fbq('track', 'Purchase', {
+        content_ids: ['product_1_id'], // Replace with purchased product IDs or SKUs
+        content_type: 'product',
+        value: 100.00, // Replace with total purchase value
+        currency: 'USD'
+      });
+				  document.body.innerHTML = `
+					<div style="text-align: center; padding: 20px;">
+					  <h2>Thank you for your order!</h2>
+					  <p>We will contact you soon.</p>
+					</div>
+				  `;
+				  
+				  return true; // Submit the form after displaying the message
+				}
+			  </script> 
+			
+
+</body>
+</html>
